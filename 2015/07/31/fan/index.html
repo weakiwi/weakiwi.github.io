@@ -1,7 +1,385 @@
-<!DOCTYPE html><html lang="null"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>fan | Hexo</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">fan</h1><a id="logo" href="/.">Hexo</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> Start</i></a><a href="/archives/"><i class="fa fa-archive"> Archiv</i></a><a href="/about/"><i class="fa fa-user"> Über</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">fan</h1><div class="post-meta">Jul 31, 2015<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>技术</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>fan | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="技术
+树莓派关于风扇的折腾标签（空格分隔）： 技术
+
+暑假回家以后就一直在折腾树莓派。aria2c下载机以及samba共享什么的，因为dietpi都有现成的方案，所以就不说了。主要还是集中在对gpio口的各种折腾上面。失败的项目有：1.pifm传送图片（没有找到合适的sstv2wav或者psk31-wav脚本，自己也不理解编码方式。对于python建立wav文件也实在不明白）2.树莓派连接郭天祥的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fan">
+<meta property="og:url" content="http://yoursite.com/2015/07/31/fan/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="技术
+树莓派关于风扇的折腾标签（空格分隔）： 技术
+
+暑假回家以后就一直在折腾树莓派。aria2c下载机以及samba共享什么的，因为dietpi都有现成的方案，所以就不说了。主要还是集中在对gpio口的各种折腾上面。失败的项目有：1.pifm传送图片（没有找到合适的sstv2wav或者psk31-wav脚本，自己也不理解编码方式。对于python建立wav文件也实在不明白）2.树莓派连接郭天祥的">
+<meta property="og:image" content="http://ww3.sinaimg.cn/bmiddle/68566be7gw1eumchqbjauj20jh0k5n12.jpg">
+<meta property="og:updated_time" content="2015-07-31T15:11:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="fan">
+<meta name="twitter:description" content="技术
+树莓派关于风扇的折腾标签（空格分隔）： 技术
+
+暑假回家以后就一直在折腾树莓派。aria2c下载机以及samba共享什么的，因为dietpi都有现成的方案，所以就不说了。主要还是集中在对gpio口的各种折腾上面。失败的项目有：1.pifm传送图片（没有找到合适的sstv2wav或者psk31-wav脚本，自己也不理解编码方式。对于python建立wav文件也实在不明白）2.树莓派连接郭天祥的">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/bmiddle/68566be7gw1eumchqbjauj20jh0k5n12.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://www.hi-pda.com/forum/uc_server/data/avatar/000/57/84/71_avatar_middle.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="http://weakiwi.digitcv.com/#/resume">我的简历</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/weakiwi/" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/1750494183/home?wvr=5&lf=reg" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">John Doe</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://www.hi-pda.com/forum/uc_server/data/avatar/000/57/84/71_avatar_middle.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">John Doe</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="http://weakiwi.digitcv.com/#/resume">我的简历</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/weakiwi/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/1750494183/home?wvr=5&lf=reg" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-fan" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/31/fan/" class="article-date">
+  	<time datetime="2015-07-31T15:11:07.000Z" itemprop="datePublished">2015-07-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      fan
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+	  <!-- Table of Contents -->
+
+        <p>技术</p>
 <h1 id="树莓派关于风扇的折腾"><a href="#树莓派关于风扇的折腾" class="headerlink" title="树莓派关于风扇的折腾"></a>树莓派关于风扇的折腾</h1><p>标签（空格分隔）： 技术</p>
 <hr>
 <p>暑假回家以后就一直在折腾树莓派。aria2c下载机以及samba共享什么的，因为dietpi都有现成的方案，所以就不说了。主要还是集中在对gpio口的各种折腾上面。<br>失败的项目有：<br>1.pifm传送图片（没有找到合适的sstv2wav或者psk31-wav脚本，自己也不理解编码方式。对于python建立wav文件也实在不明白）<br>2.树莓派连接郭天祥的实验板做实验（因为自己傻逼地忘记购买电阻，所以输出电流无法控制，怎么弄都是高电平）</p>
 <p>现在就来说下迄今为止还算成功的项目吧——树莓派加装风扇<br>风扇是从父亲那坏掉的hp mini 110上拆下来的。有三根线，红5v、黑gnd、黄是测速线。<br><img src="http://ww3.sinaimg.cn/bmiddle/68566be7gw1eumchqbjauj20jh0k5n12.jpg" alt="40pin的具体定义"><br>不得不说，这个风扇还是给力的。树莓派cpu的温度从43度下降到了35度，虽然感觉也没起到什么特殊的作用，但是总算废物利用了不是吗？<br>最主要的折腾还是通过测速线读取风扇的转速。通过资料知道了这种一条线的八成就是i2c协议总线<a href="http://baike.baidu.com/link?url=T7AL6FVuIeEsA2S-CH7rC6ij--o2ajHLDtY-LHOnZi5uSHlOs0-vmSLuVYbAYi5yjcoqux6gDhz_g-F_GyQeJ91b9niYW8kl9dN9Cd-7AgQkEh9YgadnkBCNaYRnzOducXVTsNqisTRk3h40iLLP3q" target="_blank" rel="external">什么是i2c</a>了。于是便开始上手折腾i2c，开启i2c支持主要是一下几个方面：<br>1.官方系统可以在adavnaced option里面直接开启<br>2.如果是我等dietpi，需要修改config.txt，blcklist等</p>
 <p>注意这里风扇测速线应该直接接pin3也就是sda，但是也不知为何好像其他的传感器（dht11）之类的都是随便接一个gpio就完事了。至于电阻什么的接不接好像又有很多种定论。最重要的还是没人像我这样闲，所以关于风扇测速线的接法也很难找到。不过可以参看<a href="http://shumeipai.nxez.com/2014/10/10/raspberry-dht11-get-temperature-data.html" target="_blank" rel="external">树莓派从 DHT11 温度湿度传感器读取数据</a>，也算是触类旁通吧。</p>
-</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://yoursite.com/2015/07/31/fan/" data-id="cirrjtxqp0006j7vo5jhxq5t2" class="article-share-link">Aktie</a><div class="tags"></div><div class="post-nav"><a href="/2015/08/01/fanspeed/" class="pre">fanspeed</a><a href="/2015/07/07/lkong2weibo3/" class="next">lkong2weibo3</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Kategorien</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Letzte</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/12/new_spider_method/">new_spider_method</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/12/ndsl_1/">ndsl_1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/12/howtosolve/">howtosolve</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/12/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/12/gmScripr/">gmScripr</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/12/4300/">4300</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/pyFifaolScrpit/">pyFifaolScrpit</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/29/fifaolPyscript/">fifaolPyscript</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/betterhexo/">betterhexo</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/04/football2sms/">football2sms</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">Hexo.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/08/01/fanspeed/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          fanspeed
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/07/07/lkong2weibo3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">lkong2weibo3</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="fan" data-title="fan" data-url="http://yoursite.com/2015/07/31/fan/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 John Doe
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+            <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+            </script>
+            </br>本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="http://music.163.com/outchain/player?type=0&id=108987177&auto=1&height=32"></iframe>
+      	</div>
+    </div>
+  </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
