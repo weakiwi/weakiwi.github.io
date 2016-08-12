@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="null"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>fifaolPyscript | Hexo</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">fifaolPyscript</h1><a id="logo" href="/.">Hexo</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> Start</i></a><a href="/archives/"><i class="fa fa-archive"> Archiv</i></a><a href="/about/"><i class="fa fa-user"> Über</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">fifaolPyscript</h1><div class="post-meta">Nov 29, 2015<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>python</p>
+<p>#用py写的fifaol3辅助脚本（1）<br>标签（空格分隔）： python</p>
+<hr>
+<p>最近有些沉迷于fifaol3这网游啊，自己也不是那么极客的人，只不过之前做的东西用处都不大，这次得做些用处大的东西来更新我的博客。</p>
+<p>##目标</p>
+<ol>
+<li>fifaol3截卡器，在转会市场，总是有一些卡，虽然明明存量很大，可是每次购买就是提示“该球员已售出”。这就是截卡器的功劳了。因此打算用python实现自动检测球员，自动购买球员，最好还能考虑价格问题。</li>
+<li>fifaol3经理人脚本，其实自从出了fifaol3m，就不用刷经理人了，但是我倒霉的手机玩不了，再说也得主动多造轮子提升自己吗。需要的是自动点击按钮还有就是根据情况按下esc，跳过回放入场等。</li>
+</ol>
+<p>##需要用到的工具</p>
+<ol>
+<li>pywin32，这个不用说啦，用来获取窗口以及模拟鼠标和键盘事件</li>
+<li>PIL，用来识别屏幕上的变化分析当前情况（是否有+1卡，是否在播放回放等等）</li>
+<li>spy++，用来获取窗口句柄和类</li>
+<li>windows自带画图，用来测量坐标。</li>
+<li>qq截图，用来截图还有就是测量rgb值。</li>
+</ol>
+<p>##截卡器具体分析<br>其实就是不断重复买球员这个操作，这样怎么都能买得到，把操作间隔该低了就可以和一般用户抢卡啦。<br>首先为了方便测试，我们需要把fifaol调整为非全屏以及第分辨率，这样才能方便我切换窗口。<br>然后就是对购买球员的操作进行分析：<br>1.首先是切换窗口到fifaol3。<br>2.点击搜索球员——选中球员——点击购买——回车购买———回车确认。这里需要注意的就是能不用鼠标完成的操作（比如最后两步可以用回车键代替），尽量别用鼠标完成（因为鼠标需要各种测量，实在太辛苦）。如下图：<br><img src="http://ww1.sinaimg.cn/large/68566be7gw1eyhsz8cwarj21020nhthv.jpg" alt="此处输入图片的描述"></p>
+<p>pywhin32在网上的资料还是很多的，直接找来就好了。直接贴下主程序的代码：</p>
+<pre><code class="python"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    game_hwnd = win32gui.FindWindow(<span class="string">'FIFANG'</span>,<span class="string">'FIFA ONLINE3 - Developed by SPEARHEAD'</span>)<span class="comment">#fifaol3的窗口类和标题</span>
+    win32gui.ShowWindow(game_hwnd, win32con.SW_RESTORE)<span class="comment">#窗口提前</span>
+    win32gui.SetForegroundWindow(game_hwnd)
+    game_rect = win32gui.GetWindowRect(game_hwnd)<span class="comment">#获取窗口的坐标，对应的是左上角坐标和右下角坐标</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):<span class="comment">#暂停五秒，方便用户把鼠标移动到搜索球员上</span>
+        <span class="keyword">print</span> i
+        time.sleep(<span class="number">1</span>)
+    user_x,user_y = get_mouse_point()<span class="comment">#获取鼠标坐标</span>
+    time.sleep(<span class="number">0.1</span>)
+    moveAndclick(user_x, user_y)<span class="comment">#点击搜索球员（</span>
+    time.sleep(<span class="number">1</span>)
+    <span class="keyword">while</span>(<span class="number">1</span>):
+            time.sleep(<span class="number">0.5</span>)
+            moveAndclick(game_rect[<span class="number">0</span>]+<span class="number">579</span>, game_rect[<span class="number">1</span>]+<span class="number">226</span>)<span class="comment">#选中第一个球员</span>
+            time.sleep(<span class="number">0.5</span>)
+            moveAndclick(game_rect[<span class="number">0</span>]+<span class="number">717</span>, game_rect[<span class="number">1</span>]+<span class="number">572</span>)<span class="comment">#点击购买</span>
+            time.sleep(<span class="number">0.5</span>)
+            pressHoldRelease(<span class="string">'enter'</span>)<span class="comment">#回车确认购买</span>
+            time.sleep(<span class="number">1</span>)
+            pressHoldRelease(<span class="string">'enter'</span>)<span class="comment">#回车确认</span>
+            time.sleep(<span class="number">0.5</span>)
+            moveAndclick(user_x, user_y)<span class="comment">#点击搜索球员</span>
+            time.sleep(<span class="number">3</span>)
+</code></pre>
+<p>缺点：</p>
+<ol>
+<li>没有价格识别，就是一个劲地买（一开始想截取+1图像作为区别，结果像素点太少，无论是rgb比较还是汉明距离相似度都特别高，估计只能读取内存了）</li>
+<li>有时候fifaol会突然闪退回桌面，该脚本做不到再把窗口切换回去</li>
+<li>操作间隔太小了fifaol会卡死。</li>
+<li>不能检测延迟，只能靠不断重复来弥补。</li>
+</ol>
+<p>最后按照管理秀下成果吧！<br><img src="http://ww4.sinaimg.cn/large/68566be7gw1eyht3275gjj21020nhdnw.jpg" alt="此处输入图片的描述"></p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://yoursite.com/2015/11/29/fifaolPyscript/" data-id="cirrjtxqv0008j7vobu4ab7gs" class="article-share-link">Aktie</a><div class="tags"></div><div class="post-nav"><a href="/2015/12/10/pyFifaolScrpit/" class="pre">pyFifaolScrpit</a><a href="/2015/11/06/betterhexo/" class="next">betterhexo</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Kategorien</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Letzte</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/12/new_spider_method/">new_spider_method</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/12/ndsl_1/">ndsl_1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/12/howtosolve/">howtosolve</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/12/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/12/gmScripr/">gmScripr</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/12/4300/">4300</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/pyFifaolScrpit/">pyFifaolScrpit</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/29/fifaolPyscript/">fifaolPyscript</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/betterhexo/">betterhexo</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/04/football2sms/">football2sms</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">Hexo.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
