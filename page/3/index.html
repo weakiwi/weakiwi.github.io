@@ -219,7 +219,7 @@
       
 	  <!-- Table of Contents -->
 
-        <p>技术</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>技术</p>
 <h1 id="树莓派风扇测速-update"><a href="#树莓派风扇测速-update" class="headerlink" title="树莓派风扇测速 update"></a>树莓派风扇测速 update</h1><p>标签（空格分隔）： 技术</p>
 <hr>
 <p>经过整整一天的折腾，也总算弄明白了风扇测速线的大概工作原理。首先第一个错误就是风扇并非一个i2c设备（这个被喷了），而是标准的pwm设备。测速线输出速度的方法是，通过调整输出脉冲的宽幅（大概就是方波的波长吧），来输出占空比（有波的长度和输出周期的比值），然后占空比和转速是成正比的，查表就可以得到风扇的转速了。还有一种是转一圈输出一个脉冲，但是根据我的测试，手头上的风扇明显不是这种。<br>所以要检测速度也是比较简单，参考了下单片机检测风扇速度的方法，检测测速线输出的下降沿就好了。</p>
@@ -277,7 +277,7 @@
       
 	  <!-- Table of Contents -->
 
-        <p>技术</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>技术</p>
 <h1 id="树莓派关于风扇的折腾"><a href="#树莓派关于风扇的折腾" class="headerlink" title="树莓派关于风扇的折腾"></a>树莓派关于风扇的折腾</h1><p>标签（空格分隔）： 技术</p>
 <hr>
 <p>暑假回家以后就一直在折腾树莓派。aria2c下载机以及samba共享什么的，因为dietpi都有现成的方案，所以就不说了。主要还是集中在对gpio口的各种折腾上面。<br>失败的项目有：<br>1.pifm传送图片（没有找到合适的sstv2wav或者psk31-wav脚本，自己也不理解编码方式。对于python建立wav文件也实在不明白）<br>2.树莓派连接郭天祥的实验板做实验（因为自己傻逼地忘记购买电阻，所以输出电流无法控制，怎么弄都是高电平）</p>
@@ -335,7 +335,7 @@
       
 	  <!-- Table of Contents -->
 
-        <p>技术</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>技术</p>
 <h1 id="lkong2weibo"><a href="#lkong2weibo" class="headerlink" title="lkong2weibo"></a>lkong2weibo</h1><p>标签（空格分隔）： 技术</p>
 <hr>
 <p>还是不习惯写博客，又有一段时间没有更新啦。不过就连我自己都没想到自己当初只是为了发泄的作品，竟然能够走那么远。<br>update：<br>2015年7月7日22:36:35</p>
@@ -402,7 +402,7 @@
       
 	  <!-- Table of Contents -->
 
-        <p>技术</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>技术</p>
 <h2 id="lol，lkong2weibo完成度已经达到百分之八十"><a href="#lol，lkong2weibo完成度已经达到百分之八十" class="headerlink" title="lol，lkong2weibo完成度已经达到百分之八十"></a>lol，lkong2weibo完成度已经达到百分之八十</h2><pre><code>一开始以为可能这个学期都无法完成这个项目，没想到两天能到达这个地步，真的为自己感到高兴。
 </code></pre><h2 id="具体的解决方法"><a href="#具体的解决方法" class="headerlink" title="具体的解决方法"></a>具体的解决方法</h2><ol>
 <li>首先就是用beautifulsoup处理“<p></p>”标签。网上都说lxml更加强大，但是感觉beautifulsoup的确非常容易上手。就比方说提取p标签<code>tag=soup.find(&quot;div&quot;,&quot;ys-comments-message&quot;)</code>。感觉比较容易理解，至少比之前的正则表达式好用太多。其实这应该是最容易的一个部分，因为我主要抓取的就是一个网页，而且优书网的格式还是比较标准的。</li>
@@ -466,7 +466,7 @@
       
 	  <!-- Table of Contents -->
 
-        <p>技术## ifttt方面 ##<br>    也许是ifttt最近修正了他的feed的问题，所以之前一直无法识别的rss突然可以识别了，所以<a href="http://weibo.com/u/1750494183/home?wvr=5" target="_blank" rel="external">我的微博</a><br>如今用的就是ifttt实现的lkong2weibo。缺点还是原来那样——更新频率太慢</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>技术## ifttt方面 ##<br>    也许是ifttt最近修正了他的feed的问题，所以之前一直无法识别的rss突然可以识别了，所以<a href="http://weibo.com/u/1750494183/home?wvr=5" target="_blank" rel="external">我的微博</a><br>如今用的就是ifttt实现的lkong2weibo。缺点还是原来那样——更新频率太慢</p>
 <h2 id="python爬虫方面"><a href="#python爬虫方面" class="headerlink" title="python爬虫方面"></a>python爬虫方面</h2><pre><code>之前也说到了，因为我要实现的主干网上都有现成的[微博python sdk][2]。所以主要困难集中在如何提取固定的网页标签中的内容包括：
 </code></pre><ol>
 <li>书名号内的书名</li>
@@ -539,7 +539,7 @@
       
 	  <!-- Table of Contents -->
 
-        <p>随笔    线代终于考完了，感觉不是特别好吧。主要是第五章的内容自己复习的不够，只有继续努力复习才能忘掉这些没必要的东西啦。C语言也不是非常理想，67分，虽然也是过了，虽然不影响毕业。<br>    唯一值得自己庆幸的就是自己淘的爱尔兰哨笛终于到了，属于我的自我提升计划的一部分吧。<br>    <img src="http://ww2.sinaimg.cn/bmiddle/68566be7jw1etne6fvan0j20u00u0jv5.jpg" alt="苏萨特的黄鹂鸟"></p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>随笔    线代终于考完了，感觉不是特别好吧。主要是第五章的内容自己复习的不够，只有继续努力复习才能忘掉这些没必要的东西啦。C语言也不是非常理想，67分，虽然也是过了，虽然不影响毕业。<br>    唯一值得自己庆幸的就是自己淘的爱尔兰哨笛终于到了，属于我的自我提升计划的一部分吧。<br>    <img src="http://ww2.sinaimg.cn/bmiddle/68566be7jw1etne6fvan0j20u00u0jv5.jpg" alt="苏萨特的黄鹂鸟"></p>
 <p><img src="http://ww3.sinaimg.cn/bmiddle/68566be7jw1etne6mct0vj20u00u0n1u.jpg" alt="苏萨特的黄鹂鸟"></p>
 <p>  到手了以后真的毫无感觉啊，abs所料真的让人感觉是凄美小博士啊。而且说好的和竹笛指法相似呢？<br>  <img src="http://s16.sinaimg.cn/middle/633658d7ga3f2a6a2681f&amp;690" alt="竹笛的在指法"><img src="http://imgsrc.baidu.com/forum/w=580/sign=cad6c2f80db30f24359aec0bf894d192/9d7880cb39dbb6fde3398cbf0b24ab18962b376f.jpg" alt="哨笛的指法"></p>
 <p>  后来在网上进一步了解到，竹笛的G调=哨笛的高音D，那就还好，至少碰到一个自己熟悉的了。不过也是很久没有吹笛子了，拍数啊、识谱啊都不行了，只能说继续练习吧。</p>
@@ -595,7 +595,7 @@
       
 	  <!-- Table of Contents -->
 
-        <p>技术</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>技术</p>
 <p>##为什么会产生这个想法<br>1.之前折腾IFTTT，尝试了下推送hipda的内容，虽然成功了，但是意义并不大。后来反应过来了还有龙的天空，并且发现了这个连接——<a href="http://www.yousuu.com/comments/digest" target="_blank" rel="external">大波书评</a>。尝试着用feed43自烧了一个<a href="http://feed43.com/0062551070718811.xml" target="_blank" rel="external">rss源</a></p>
 <p>。个人感觉排版什么的都还算不错吧，悲剧的是ifttt竟然不识别。</p>
 <p>2.feed43的更新频率据说是八个小时，而龙空书评的产生频率要远远高于这个刷新频率。之前做的bs2weibo也是如此，突然一下发一大堆微博，让多位好友被悲惨刷屏。</p>
@@ -655,7 +655,7 @@
       
 	  <!-- Table of Contents -->
 
-        <h1 id="The-First-Step"><a href="#The-First-Step" class="headerlink" title="The First Step"></a>The First Step</h1><p><font color="red">hello world<font></font></font></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="The-First-Step"><a href="#The-First-Step" class="headerlink" title="The First Step"></a>The First Step</h1><p><font color="red">hello world<font></font></font></p>
 
       
     </div>
@@ -702,8 +702,10 @@
     </div>
   </div>
 </footer>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=590883&auto=1&height=66"></iframe>
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
+
     </div>
     
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
