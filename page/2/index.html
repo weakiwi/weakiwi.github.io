@@ -191,6 +191,78 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-aliyun" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/12/aliyun/" class="article-date">
+  	<time datetime="2015-10-12T05:38:23.000Z" itemprop="datePublished">2015-10-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/12/aliyun/">aliyun</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+	  <!-- Table of Contents -->
+
+        <script src="/assets/js/APlayer.min.js"> </script><p>阿里云</p>
+<h1 id="阿里云内核更新全过程"><a href="#阿里云内核更新全过程" class="headerlink" title="阿里云内核更新全过程"></a>阿里云内核更新全过程</h1><p>标签（空格分隔）： 阿里云</p>
+<hr>
+<p>九月份的时候突然得知阿里云云翼对大学生超级良心的优惠，算下来一年只需要70，虽然的确配置不咋滴还限制流量，但是毕竟便宜。不过买回来以后真的发觉不知道可以用来干啥，就当了下编程环境，然后跑了下爬虫。实在不甘心啊，这可是两顿鸡公煲的钱！于是打算手动更新内核咯，也为以后自己精简树莓派内核做准备咯。</p>
+<p>1.需要准备的材料：<br>a.阿里云vps<br>b.最新的linux kernel<br>c.各种依赖包</p>
+<p>2.大概的步骤<br>a.下载好需要的一切<br>b.make config<br>c.make<br>d.make install</p>
+<p>好了，首先就是需要把所有的软件包更新到最新。插一段话，我因为编译比较无聊，所以顺手把阿里云盾卸载了（实在想不出谁会闲着没事搞我的主机，反正我有格盘大法我怕谁啊）。安利下彻底卸载阿里云云盾的方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget http://update.aegis.aliyun.com/download/uninstall.sh</div><div class="line">chmod +x uninstall.sh</div><div class="line">sh uninstall.sh</div></pre></td></tr></table></figure></p>
+<p>我直接执行反正提示什么循环变量出现问题，然后索性就把脚本里执行的命令复制出来，全部执行，最后再看下top，ok！</p>
+<ol>
+<li>首先就是去wget最新的kernel啦，<a href="https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.2.3.tar.xz" target="_blank" rel="external">地址在此！</a>。下载好后先用xz -d命令解压，再用tar -xf命令解压，得到内核文件夹。</li>
+<li>理想中的情况应该是用/linux-4.3-rc4/scripts文件架下的extract-ikconfig脚本导出当前的内核配置然后再导入，这样既节省配置时间，而且相对来说也保险一些。然而我死活没有弄清楚该脚本的用法，于是直接make allyesconfig（启用所有的内核功能）。顺便提一下几种配置方法：<blockquote>
+<p>make config           #遍历选择编译内核功能<br>make allyesconfig     #启用内核全部功能<br>make allnoconfig      #内核功能选项全部为否<br>make menuconfig       #开启文本菜单选项，对窗口有限制，尽量调大窗口，否则会出错</p>
+<pre><code>#使用此命令需安装gcc和ncurses-devel
+</code></pre><p>make gconfig          #依赖GNome桌面环境及GNome的图形开发环境，gtk2<br>make kconfig          #依赖KDE桌面环境及KDE的图形开发环境，qt</p>
+</blockquote>
+</li>
+<li>配置完以后就可以直接make啦，然而竟然提示我<code>scripts/sign-file.c:23:30: fatal error: openssl/opensslv.h: No such file or directory</code>，最后得到的解决方法是<code>apt-get install libssl-dev</code>，果然执行完以后就可以顺利开始编译了。以后如果大家也遇到类似的问题，可以google一下所需要的依赖包或者库文件什么的。</li>
+<li>最后附上的一些小意见。建议用<code>make -j 2</code>这样可以把阿里云的两个核心都用上，适当提高编译速度。还有就是可以安装下screen这个软件，然后输入screen再make，这样就算断开ssh也能继续编译啦。其中在screen命令新建的窗口中ctrl+a+d是隐藏窗口，<code>screen -ls</code>是列出所有窗口列表，<code>screen -r 窗口id</code>是切换窗口。</li>
+<li>之后我就关了putty，让他在后台自己静静地编译了，第二天中午一下看迫不及待地打开一看，发现已经搞定了。于是输入<code>make modules_install || make install</code>，然后再次挂后台。之后直接查看/boot下面有没有编译好的最新镜像就ok啦。然而还有一件奇怪的事情就是虽然编译成功，但是系统仍不用最新的img启动，查看/boot/grub/grub.cfg也发现启动顺序改好了。没办法，使用移除老镜像大法——<code>apt-get remove 你的镜像版本</code>最后终于成功用4.3内核启动了，结尾照例贴图一张晒一晒。<img src="http://ww3.sinaimg.cn/large/68566be7gw1ewyai0dfdvj20nd0enn03.jpg" alt="此处输入图片的描述"></li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-proteus2p" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -766,62 +838,6 @@
 
 
   
-    <article id="post-ndsl" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/08/10/ndsl/" class="article-date">
-  	<time datetime="2015-08-10T02:12:09.000Z" itemprop="datePublished">2015-08-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/10/ndsl/">ndsl</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-	  <!-- Table of Contents -->
-
-        <script src="/assets/js/APlayer.min.js"> </script><p>技术</p>
-<h1 id="NDSL导电胶更换"><a href="#NDSL导电胶更换" class="headerlink" title="NDSL导电胶更换"></a>NDSL导电胶更换</h1><p>标签（空格分隔）： 技术</p>
-<hr>
-<p>最近因为的确找不到什么事情可以做的，于是乎就网购了一套导电胶来修补一下NDSL惨不忍睹的手感。<br>首先最重要的也是所有拆机的共同点——把电池、触控笔还有保护卡这一类的东西能拆就先拆了。接下来建议跟着网上的教程走，因为ndsl有挺多隐藏螺丝的（比方说防滑垫下面的还有电池下面的）。在拆机的时候个人建议准备一个磁铁一类的东西，用这玩意收纳螺丝钉实在太有用了。还有就是注意在拆机的过程中别吧lr的弹簧弄坏了，那个太难装了。翘壳子建议用校园卡什么的，一点一点的撬开，如果翘不开，就检查一下还有没有螺丝钉没卸下来的，千万不要用蛮力。<br>然后把电路板掀开以后换导电胶也就是那么回事啦。<br><img src="http://ww3.sinaimg.cn/mw690/68566be7jw1euvd5e3m6ej20u00u0dlb.jpg" alt="此处输入图片的描述"><br><img src="http://ww4.sinaimg.cn/mw690/68566be7jw1euvd5pcd8xj20u00u043a.jpg" alt="此处输入图片的描述"></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -844,7 +860,6 @@
     </div>
   </div>
 </footer>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=590883&auto=1&height=66"></iframe>
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 

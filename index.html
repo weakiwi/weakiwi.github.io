@@ -191,11 +191,61 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-神箭手爬虫" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/22/神箭手爬虫/" class="article-date">
+  	<time datetime="2016-08-22T12:21:52.965Z" itemprop="datePublished">2016-08-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+	  <!-- Table of Contents -->
+
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="神箭手云爬虫初体验"><a href="#神箭手云爬虫初体验" class="headerlink" title="神箭手云爬虫初体验"></a>神箭手云爬虫初体验</h1><p>标签（空格分隔）： 爬虫</p>
+<hr>
+<p>在一起实习的朋友推荐下尝试了一下神箭手云爬虫，感觉相当不错。首先自带函数虽然简陋，但是对于爬虫而言也算够用。导出excel功能对于我而言算是体贴。最最良心的是自带代理而且是可更换的，这个用爬虫的人都知道是多么良心了吧。<br>我用神箭手写了一个reddit的Asiancult标签的美女图爬虫，原理虽然简单，但是也跳了一些小坑。与大家分享，希望大家不要重蹈我的覆辙。<br>照例先贴代码。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> configs = &#123;</div><div class="line">    enableProxy: <span class="literal">true</span>,</div><div class="line">    domains: [<span class="string">"www.reddit.com"</span>],</div><div class="line">    scanUrls: [<span class="string">'https://www.reddit.com/r/AsianCuties/'</span>],</div><div class="line">    contentUrlRegexes: [<span class="string">"https://www\\.reddit\\.com/r/AsianCuties/.*?"</span>],</div><div class="line">    helperUrlRegexes: [<span class="string">""</span>], <span class="comment">//可留空</span></div><div class="line">    fields: [</div><div class="line">        &#123;</div><div class="line">            <span class="comment">// 第一个抽取项</span></div><div class="line">            name: <span class="string">"title"</span>,</div><div class="line">            selector: <span class="string">"//a[@class='title may-blank outbound']/@href"</span>, <span class="comment">//默认使用XPath</span></div><div class="line">            required: <span class="literal">true</span>, <span class="comment">//是否不能为空</span></div><div class="line">            repeated: <span class="literal">true</span></div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;;</div><div class="line">configs.beforeCrawl = <span class="function"><span class="keyword">function</span>(<span class="params">site</span>) </span>&#123;</div><div class="line">    site.addHeader(<span class="string">"Referer"</span>, <span class="string">"https://www.reddit.com/r/AsianCutiesl"</span>);</div><div class="line">&#125;;</div><div class="line">configs.afterDownloadPage = <span class="function"><span class="keyword">function</span>(<span class="params">page,  site</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> regex = <span class="regexp">/count=[0-9]&#123;1,4&#125;&amp;amp;after=t3_[0-9a-zA-Z]&#123;1,8&#125;/g</span>;</div><div class="line">    <span class="keyword">var</span> urls = [];</div><div class="line">    <span class="keyword">var</span> content = page.raw ;</div><div class="line">    urls = <span class="string">'https://www.reddit.com/r/AsianCuties/?'</span>+content.match(regex);</div><div class="line">    site.addUrl(urls);</div><div class="line">    <span class="built_in">console</span>.log(urls);</div><div class="line">    <span class="keyword">return</span> page;</div><div class="line">&#125;;</div><div class="line">configs.onChangeProxy = <span class="function"><span class="keyword">function</span>(<span class="params">site</span>) </span>&#123;</div><div class="line">    site.addHeader(<span class="string">"Referer"</span>, <span class="string">"https://www.reddit.com/r/"</span>)</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> crawler = <span class="keyword">new</span> Crawler(configs);</div><div class="line">crawler.start();</div></pre></td></tr></table></figure></p>
+<p>其实代码结构还是比较简单的。就说下我碰到的几个坑吧。</p>
+<ol>
+<li>contentUrlRegexes是抓取的内容也，这个正则一定要写对啊，我一开始就是没写对，搞到网页下载下来就是不做解析。</li>
+<li>afterDownloadPage。如果你也是和我一样，下一条网址是需要通过解析页面来获取的，那么请务必使用这个函数。我使用onProcessScanPage并没有生效，还有一个就是一定要return page而不是return false，因为这里返回的内容是交给爬虫来提取你要抓取的内容的。</li>
+</ol>
+<p>总得来说reddit的抓取还是相对简单的，没有做到什么比较惊艳的东西。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-new_spider_method" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/08/12/new_spider_method/" class="article-date">
-  	<time datetime="2016-08-12T12:07:54.265Z" itemprop="datePublished">2016-08-12</time>
+      <a href="/2016/08/22/new_spider_method/" class="article-date">
+  	<time datetime="2016-08-22T12:21:52.942Z" itemprop="datePublished">2016-08-22</time>
 </a>
     </div>
   
@@ -242,8 +292,8 @@
     <article id="post-ndsl_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/08/12/ndsl_1/" class="article-date">
-  	<time datetime="2016-08-12T12:07:54.262Z" itemprop="datePublished">2016-08-12</time>
+      <a href="/2016/08/22/ndsl_1/" class="article-date">
+  	<time datetime="2016-08-22T12:21:52.941Z" itemprop="datePublished">2016-08-22</time>
 </a>
     </div>
   
@@ -302,8 +352,8 @@
     <article id="post-howtosolve" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/08/12/howtosolve/" class="article-date">
-  	<time datetime="2016-08-12T12:07:54.245Z" itemprop="datePublished">2016-08-12</time>
+      <a href="/2016/08/22/howtosolve/" class="article-date">
+  	<time datetime="2016-08-22T12:21:52.924Z" itemprop="datePublished">2016-08-22</time>
 </a>
     </div>
   
@@ -350,8 +400,8 @@
     <article id="post-gmScripr" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/08/12/gmScripr/" class="article-date">
-  	<time datetime="2016-08-12T12:07:54.234Z" itemprop="datePublished">2016-08-12</time>
+      <a href="/2016/08/22/gmScripr/" class="article-date">
+  	<time datetime="2016-08-22T12:21:52.916Z" itemprop="datePublished">2016-08-22</time>
 </a>
     </div>
   
@@ -440,8 +490,8 @@
     <article id="post-4300" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/08/12/4300/" class="article-date">
-  	<time datetime="2016-08-12T12:07:54.186Z" itemprop="datePublished">2016-08-12</time>
+      <a href="/2016/08/22/4300/" class="article-date">
+  	<time datetime="2016-08-22T12:21:52.875Z" itemprop="datePublished">2016-08-22</time>
 </a>
     </div>
   
@@ -830,78 +880,6 @@
 
 
   
-    <article id="post-aliyun" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/10/12/aliyun/" class="article-date">
-  	<time datetime="2015-10-12T05:38:23.000Z" itemprop="datePublished">2015-10-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/12/aliyun/">aliyun</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-	  <!-- Table of Contents -->
-
-        <script src="/assets/js/APlayer.min.js"> </script><p>阿里云</p>
-<h1 id="阿里云内核更新全过程"><a href="#阿里云内核更新全过程" class="headerlink" title="阿里云内核更新全过程"></a>阿里云内核更新全过程</h1><p>标签（空格分隔）： 阿里云</p>
-<hr>
-<p>九月份的时候突然得知阿里云云翼对大学生超级良心的优惠，算下来一年只需要70，虽然的确配置不咋滴还限制流量，但是毕竟便宜。不过买回来以后真的发觉不知道可以用来干啥，就当了下编程环境，然后跑了下爬虫。实在不甘心啊，这可是两顿鸡公煲的钱！于是打算手动更新内核咯，也为以后自己精简树莓派内核做准备咯。</p>
-<p>1.需要准备的材料：<br>a.阿里云vps<br>b.最新的linux kernel<br>c.各种依赖包</p>
-<p>2.大概的步骤<br>a.下载好需要的一切<br>b.make config<br>c.make<br>d.make install</p>
-<p>好了，首先就是需要把所有的软件包更新到最新。插一段话，我因为编译比较无聊，所以顺手把阿里云盾卸载了（实在想不出谁会闲着没事搞我的主机，反正我有格盘大法我怕谁啊）。安利下彻底卸载阿里云云盾的方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget http://update.aegis.aliyun.com/download/uninstall.sh</div><div class="line">chmod +x uninstall.sh</div><div class="line">sh uninstall.sh</div></pre></td></tr></table></figure></p>
-<p>我直接执行反正提示什么循环变量出现问题，然后索性就把脚本里执行的命令复制出来，全部执行，最后再看下top，ok！</p>
-<ol>
-<li>首先就是去wget最新的kernel啦，<a href="https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.2.3.tar.xz" target="_blank" rel="external">地址在此！</a>。下载好后先用xz -d命令解压，再用tar -xf命令解压，得到内核文件夹。</li>
-<li>理想中的情况应该是用/linux-4.3-rc4/scripts文件架下的extract-ikconfig脚本导出当前的内核配置然后再导入，这样既节省配置时间，而且相对来说也保险一些。然而我死活没有弄清楚该脚本的用法，于是直接make allyesconfig（启用所有的内核功能）。顺便提一下几种配置方法：<blockquote>
-<p>make config           #遍历选择编译内核功能<br>make allyesconfig     #启用内核全部功能<br>make allnoconfig      #内核功能选项全部为否<br>make menuconfig       #开启文本菜单选项，对窗口有限制，尽量调大窗口，否则会出错</p>
-<pre><code>#使用此命令需安装gcc和ncurses-devel
-</code></pre><p>make gconfig          #依赖GNome桌面环境及GNome的图形开发环境，gtk2<br>make kconfig          #依赖KDE桌面环境及KDE的图形开发环境，qt</p>
-</blockquote>
-</li>
-<li>配置完以后就可以直接make啦，然而竟然提示我<code>scripts/sign-file.c:23:30: fatal error: openssl/opensslv.h: No such file or directory</code>，最后得到的解决方法是<code>apt-get install libssl-dev</code>，果然执行完以后就可以顺利开始编译了。以后如果大家也遇到类似的问题，可以google一下所需要的依赖包或者库文件什么的。</li>
-<li>最后附上的一些小意见。建议用<code>make -j 2</code>这样可以把阿里云的两个核心都用上，适当提高编译速度。还有就是可以安装下screen这个软件，然后输入screen再make，这样就算断开ssh也能继续编译啦。其中在screen命令新建的窗口中ctrl+a+d是隐藏窗口，<code>screen -ls</code>是列出所有窗口列表，<code>screen -r 窗口id</code>是切换窗口。</li>
-<li>之后我就关了putty，让他在后台自己静静地编译了，第二天中午一下看迫不及待地打开一看，发现已经搞定了。于是输入<code>make modules_install || make install</code>，然后再次挂后台。之后直接查看/boot下面有没有编译好的最新镜像就ok啦。然而还有一件奇怪的事情就是虽然编译成功，但是系统仍不用最新的img启动，查看/boot/grub/grub.cfg也发现启动顺序改好了。没办法，使用移除老镜像大法——<code>apt-get remove 你的镜像版本</code>最后终于成功用4.3内核启动了，结尾照例贴图一张晒一晒。<img src="http://ww3.sinaimg.cn/large/68566be7gw1ewyai0dfdvj20nd0enn03.jpg" alt="此处输入图片的描述"></li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -924,7 +902,6 @@
     </div>
   </div>
 </footer>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=590883&auto=1&height=66"></iframe>
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
