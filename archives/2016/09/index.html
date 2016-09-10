@@ -3,27 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>weakiwi</title>
+  <title>Archives: 2016/9 | weakiwi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="爬虫新玩法——通过队列来提高爬虫性能标签（空格分隔）： 爬虫
-
-事情的起因是亚马逊鞋品的新年优惠，其实这种所谓的优惠往往力度不大，然而再小的羊毛也是羊毛不是。因为商品太多，而且显示的还是优惠前的价格，所以人肉挑实在是太辛苦了，于是乎万能的py就必须启动了。
-还是按照以往那样来进行需求分析：1.获取优惠商品栏目下所有商品的超链接2.获取这些商品的折后价格、星级还有热销排行榜，自己分别对其设置权数，">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="weakiwi">
-<meta property="og:url" content="http://yoursite.com/2016/08/22/new_spider_method/index.html">
+<meta property="og:url" content="http://yoursite.com/archives/2016/09/index.html">
 <meta property="og:site_name" content="weakiwi">
-<meta property="og:description" content="爬虫新玩法——通过队列来提高爬虫性能标签（空格分隔）： 爬虫
-
-事情的起因是亚马逊鞋品的新年优惠，其实这种所谓的优惠往往力度不大，然而再小的羊毛也是羊毛不是。因为商品太多，而且显示的还是优惠前的价格，所以人肉挑实在是太辛苦了，于是乎万能的py就必须启动了。
-还是按照以往那样来进行需求分析：1.获取优惠商品栏目下所有商品的超链接2.获取这些商品的折后价格、星级还有热销排行榜，自己分别对其设置权数，">
-<meta property="og:updated_time" content="2016-08-12T09:01:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="weakiwi">
-<meta name="twitter:description" content="爬虫新玩法——通过队列来提高爬虫性能标签（空格分隔）： 爬虫
-
-事情的起因是亚马逊鞋品的新年优惠，其实这种所谓的优惠往往力度不大，然而再小的羊毛也是羊毛不是。因为商品太多，而且显示的还是优惠前的价格，所以人肉挑实在是太辛苦了，于是乎万能的py就必须启动了。
-还是按照以往那样来进行需求分析：1.获取优惠商品栏目下所有商品的超链接2.获取这些商品的折后价格、星级还有热销排行榜，自己分别对其设置权数，">
   
     <link rel="alternative" href="/atom.xml" title="weakiwi" type="application/atom+xml">
   
@@ -202,98 +189,169 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-new_spider_method" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2016/08/22/new_spider_method/" class="article-date">
-  	<time datetime="2016-08-22T12:21:52.942Z" itemprop="datePublished">2016-08-22</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/09/10/termux/" class="archive-article-date">
+  	<time datetime="2016-09-10T01:35:06.457Z" itemprop="datePublished">Sep 10</time>
 </a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-	  <!-- Table of Contents -->
+        </div>
+    	 
+        <div class="article-info info-on-right">
+          
+          
 
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="爬虫新玩法——通过队列来提高爬虫性能"><a href="#爬虫新玩法——通过队列来提高爬虫性能" class="headerlink" title="爬虫新玩法——通过队列来提高爬虫性能"></a>爬虫新玩法——通过队列来提高爬虫性能</h1><p>标签（空格分隔）： 爬虫</p>
-<hr>
-<p>事情的起因是亚马逊鞋品的新年优惠，其实这种所谓的优惠往往力度不大，然而再小的羊毛也是羊毛不是。因为商品太多，而且显示的还是优惠前的价格，所以人肉挑实在是太辛苦了，于是乎万能的py就必须启动了。</p>
-<p>还是按照以往那样来进行需求分析：<br>1.获取优惠商品栏目下所有商品的超链接<br>2.获取这些商品的折后价格、星级还有热销排行榜，自己分别对其设置权数，算出一个综合评分。</p>
-<p>，我们需要提取的商品链接的值是类似。class=’a-size-small a-color-secondary’下的，用bs4处理就好了，打开后的网页处理方法在之前的文章也提到过，在这里就不提了。这次最主要的是对爬虫的性能进行优化。</p>
-<p>之前做过一个D版帖子的爬虫，也是这种先获取列表再打开类型的。一开始我采用的是非常单一的，获取完所有帖子的超链接然后再打开。唯一的优化就是采用多核心。这样做的缺点非常明显就是一单获取过程出错，后面对超链接包含内容的分析也无法进行。</p>
-<p>其实最理想的处理方法就是每抓取一个超链接就分析一个超链接，百度之，发现这就是所谓的消费者生产者模型，用py现成的queue模块就能搞定。其实只要知道queue.put()是往队头插入一个元素，queue.get()是读取队尾元素并删除就好了。这样我们只要把获取超链接写成一个方法并存在队列里，对超链接的读取写成另一个方法，同时读取队列就好了。</p>
-
-      
-    </div>
-    
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
+</article>
   
     
-<nav id="article-nav">
-  
-    <a href="/2016/08/22/神箭手爬虫/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/08/22/ndsl_1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/09/10/神箭手爬虫/" class="archive-article-date">
+  	<time datetime="2016-09-10T01:35:06.453Z" itemprop="datePublished">Sep 10</time>
+</a>
+        </div>
+    	 
+        <div class="article-info info-on-right">
+          
+          
 
-  
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
 </article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/09/10/new_spider_method/" class="archive-article-date">
+  	<time datetime="2016-09-10T01:35:06.428Z" itemprop="datePublished">Sep 10</time>
+</a>
+        </div>
+    	 
+        <div class="article-info info-on-right">
+          
+          
 
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/09/10/ndsl_1/" class="archive-article-date">
+  	<time datetime="2016-09-10T01:35:06.425Z" itemprop="datePublished">Sep 10</time>
+</a>
+        </div>
+    	 
+        <div class="article-info info-on-right">
+          
+          
 
-<div class="share">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/09/10/howtosolve/" class="archive-article-date">
+  	<time datetime="2016-09-10T01:35:06.410Z" itemprop="datePublished">Sep 10</time>
+</a>
+        </div>
+    	 
+        <div class="article-info info-on-right">
+          
+          
 
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/09/10/gmScripr/" class="archive-article-date">
+  	<time datetime="2016-09-10T01:35:06.405Z" itemprop="datePublished">Sep 10</time>
+</a>
+        </div>
+    	 
+        <div class="article-info info-on-right">
+          
+          
 
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/09/10/4300/" class="archive-article-date">
+  	<time datetime="2016-09-10T01:35:06.351Z" itemprop="datePublished">Sep 10</time>
+</a>
+        </div>
+    	 
+        <div class="article-info info-on-right">
+          
+          
 
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="new_spider_method" data-title="" data-url="http://yoursite.com/2016/08/22/new_spider_method/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
 
-
-
+    
 
 </div>
       <footer id="footer">
@@ -326,8 +384,8 @@
 		mathjax: true,
 		animate: undefined,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: undefined
