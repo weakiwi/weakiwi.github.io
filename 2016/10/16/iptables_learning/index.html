@@ -3,14 +3,30 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives | weakiwi</title>
+  <title>weakiwi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="iptables学习笔记标签（空格分隔）： 笔记 —
+
+什么是iptables?iptables 是一个配置 Linux 内核 防火墙 的命令行工具，是 netfilter项目的一部分。术语 iptables 也经常代指该内核级防火墙。
+iptables 可以检测、修改、转发、重定向和丢弃 IPv4 数据包。过滤 IPv4数据包的代码已经内置于内核中，并且按照不同的目的被组织成 表的集合。表 由">
+<meta property="og:type" content="article">
 <meta property="og:title" content="weakiwi">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/10/16/iptables_learning/index.html">
 <meta property="og:site_name" content="weakiwi">
+<meta property="og:description" content="iptables学习笔记标签（空格分隔）： 笔记 —
+
+什么是iptables?iptables 是一个配置 Linux 内核 防火墙 的命令行工具，是 netfilter项目的一部分。术语 iptables 也经常代指该内核级防火墙。
+iptables 可以检测、修改、转发、重定向和丢弃 IPv4 数据包。过滤 IPv4数据包的代码已经内置于内核中，并且按照不同的目的被组织成 表的集合。表 由">
+<meta property="og:image" content="http://images.cnitblog.com/blog/458290/201307/25110549-4341c36598bb486fa1df55274ed17675.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/458290/201307/25110752-87fb891aa3054e6aa9ccf37e94907d9e.png">
+<meta property="og:updated_time" content="2016-10-16T09:04:16.438Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="weakiwi">
+<meta name="twitter:description" content="iptables学习笔记标签（空格分隔）： 笔记 —
+
+什么是iptables?iptables 是一个配置 Linux 内核 防火墙 的命令行工具，是 netfilter项目的一部分。术语 iptables 也经常代指该内核级防火墙。
+iptables 可以检测、修改、转发、重定向和丢弃 IPv4 数据包。过滤 IPv4数据包的代码已经内置于内核中，并且按照不同的目的被组织成 表的集合。表 由">
+<meta name="twitter:image" content="http://images.cnitblog.com/blog/458290/201307/25110549-4341c36598bb486fa1df55274ed17675.png">
   
     <link rel="alternative" href="/atom.xml" title="weakiwi" type="application/atom+xml">
   
@@ -189,258 +205,100 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-iptables_learning" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/10/16/iptables_learning/" class="article-date">
+  	<time datetime="2016-10-16T09:04:16.438Z" itemprop="datePublished">2016-10-16</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+    <div class="article-entry" itemprop="articleBody">
       
+	  <!-- Table of Contents -->
+
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="iptables学习笔记"><a href="#iptables学习笔记" class="headerlink" title="iptables学习笔记"></a>iptables学习笔记</h1><p>标签（空格分隔）： 笔记 —</p>
+<ol>
+<li>什么是iptables?iptables 是一个配置 Linux 内核 防火墙 的命令行工具，是 netfilter<br>项目的一部分。术语 iptables 也经常代指该内核级防火墙。</li>
+<li>iptables 可以检测、修改、转发、重定向和丢弃 IPv4 数据包。过滤 IPv4<br>数据包的代码已经内置于内核中，并且按照不同的目的被组织成 表<br>的集合。表 由一组预先定义的 链 组成，链 包含遍历顺序规则。</li>
+<li>显示当前规则–<code>iptables -nvL</code></li>
+<li><p>重置规则， ```</p>
+<h1 id="iptables-F-iptables-X-iptables-t-nat-F-iptables-t-nat-X-iptables-t-mangle-F-iptables-t-mangle-X-iptables-t-raw-F"><a href="#iptables-F-iptables-X-iptables-t-nat-F-iptables-t-nat-X-iptables-t-mangle-F-iptables-t-mangle-X-iptables-t-raw-F" class="headerlink" title="iptables -F iptables -X iptables -t nat -F iptables -t nat -X iptables -t mangle -F iptables -t mangle -X iptables -t raw -F"></a>iptables -F iptables -X iptables -t nat -F iptables -t nat -X iptables -t mangle -F iptables -t mangle -X iptables -t raw -F</h1><h1 id="iptables-t-raw-X-iptables-t-security-F-iptables-t-security-X-iptables-P-INPUT-ACCEPT-iptables-P-FORWARD-ACCEPT"><a href="#iptables-t-raw-X-iptables-t-security-F-iptables-t-security-X-iptables-P-INPUT-ACCEPT-iptables-P-FORWARD-ACCEPT" class="headerlink" title="iptables -t raw -X iptables -t security -F iptables -t security -X iptables -P INPUT ACCEPT iptables -P FORWARD ACCEPT"></a>iptables -t raw -X iptables -t security -F iptables -t security -X iptables -P INPUT ACCEPT iptables -P FORWARD ACCEPT</h1><h1 id="iptables-P-OUTPUT-ACCEPT"><a href="#iptables-P-OUTPUT-ACCEPT" class="headerlink" title="iptables -P OUTPUT ACCEPT"></a>iptables -P OUTPUT ACCEPT</h1><p>``` -F刷新表，-x删除表</p>
+</li>
+<li><p>阻止来自同一ip的链接，<code>iptables -A INPUT -s 10.10.10.10 -j DROP</code></p>
+</li>
+<li>阻止来自一组ip地址的链接， <code>iptables -A INPUT -s 10.10.10.0/24 -j DROP</code></li>
+<li>iptables后跟参数的解释。-p proto，后跟协议名称。-A<br>append，后跟链名称。-J jump。-m 匹配。-I<br>insert，注意-A是加到一条链的尾部，-I是强行插入到一条链的头部。</li>
+<li><code>iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</code>，接收任何已建立端口的包</li>
+<li>iptables使用规则。所有链名必须大写，INPUT/OUTPUT/FORWARD/PREROUTING/POSTROUTING。所有表名必须小写，filter/nat/mangle。所有动作必须大写，ACCEPT/DROP/SNAT/DNAT/MASQUERADE。所有匹配必须小写，-s/-d/-m<br><module_name>/-p。</module_name></li>
+<li>-s为除某某地址以外的所有地址，-s<br>192.168/16，就是除内往外的所有地址。</li>
+<li>几个表的详细解释，一般默认是filter表。<img src="http://images.cnitblog.com/blog/458290/201307/25110549-4341c36598bb486fa1df55274ed17675.png" alt=""></li>
+<li>参数的详细解释。<img src="http://images.cnitblog.com/blog/458290/201307/25110752-87fb891aa3054e6aa9ccf37e94907d9e.png" alt=""></li>
+</ol>
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
+    </div>
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/10/16/iptables_learning/" class="archive-article-date">
-  	<time datetime="2016-10-16T09:04:16.438Z" itemprop="datePublished">Oct 16</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/09/10/termux/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/09/10/termux/" class="archive-article-date">
-  	<time datetime="2016-09-10T01:34:49.728Z" itemprop="datePublished">Sep 10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/22/神箭手爬虫/" class="archive-article-date">
-  	<time datetime="2016-08-22T12:21:34.809Z" itemprop="datePublished">Aug 22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/12/new_spider_method/" class="archive-article-date">
-  	<time datetime="2016-08-12T09:03:41.103Z" itemprop="datePublished">Aug 12</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/12/ndsl_1/" class="archive-article-date">
-  	<time datetime="2016-08-12T09:03:40.967Z" itemprop="datePublished">Aug 12</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/12/gmScripr/" class="archive-article-date">
-  	<time datetime="2016-08-12T09:03:40.835Z" itemprop="datePublished">Aug 12</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/12/howtosolve/" class="archive-article-date">
-  	<time datetime="2016-08-12T09:03:40.700Z" itemprop="datePublished">Aug 12</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="iptables_learning" data-title="" data-url="http://yoursite.com/2016/10/16/iptables_learning/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/12/4300/" class="archive-article-date">
-  	<time datetime="2016-08-12T09:03:36.514Z" itemprop="datePublished">Aug 12</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/12/10/pyFifaolScrpit/" class="archive-article-date">
-  	<time datetime="2015-12-10T08:34:17.000Z" itemprop="datePublished">Dec 10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/10/pyFifaolScrpit/">pyFifaolScrpit</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/11/29/fifaolPyscript/" class="archive-article-date">
-  	<time datetime="2015-11-29T06:02:42.000Z" itemprop="datePublished">Nov 29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/11/29/fifaolPyscript/">fifaolPyscript</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 </div>
       <footer id="footer">
@@ -473,8 +331,8 @@
 		mathjax: true,
 		animate: undefined,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: undefined

@@ -191,6 +191,66 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-openshiftfq" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/15/openshiftfq/" class="article-date">
+  	<time datetime="2015-08-15T04:09:39.000Z" itemprop="datePublished">2015-08-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/15/openshiftfq/">openshiftfq</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+	  <!-- Table of Contents -->
+
+        <script src="/assets/js/APlayer.min.js"> </script><p> 翻墙</p>
+<h1 id="openshift翻墙尝试"><a href="#openshift翻墙尝试" class="headerlink" title="openshift翻墙尝试"></a>openshift翻墙尝试</h1><p>标签（空格分隔）： 翻墙</p>
+<hr>
+<p>之前注册了openshift本来是想用来替代sae的，结果他的那个部署工具实在是不会用，但是自己也不想白白浪费这个将来不知道还免不免费的账号，所以就用来翻墙咯。<br>原理就是走ssh的端口映射啦，这里选用的是secureCRT，因为putty不知道怎么才能每次使用指定的公钥和用户名。<br>首先注册openshift账号以及上传公钥什么的比较简单，这里就不多说了，主要注意的是如果使用puutykeygen生成的记得保存为openssh格式这样secureCRT可以直接使用。</p>
+<p>接下来就是secureCRT+proxifier的翻墙教程啦。<br><img src="http://ww2.sinaimg.cn/bmiddle/68566be7jw1ev35ngzmbij20yv09t0v7.jpg" alt="获取用户名和ssh地址">@前面的就是登陆用的用户名，后面的则是ssh地址。<br>1.在secureCRT里面选择新建会话。<img src="http://ww2.sinaimg.cn/mw690/68566be7jw1ev35q8ahlsj20iu0b1402.jpg" alt="此处输入图片的描述">主机名就是@后面那串，用户名就是@前面那串。描述还有标题什么的随便填写就好了<br>2.在菜单的“选项”-“全局选项”-“SSH2”里导入之前生成并且上传的公钥。<br><img src="http://ww4.sinaimg.cn/large/68566be7jw1ev35ujn3daj20hx0hfwhb.jpg" alt="此处输入图片的描述"><br>3.打开连接，右键点击刚才创建的连接，“属性”-“端口转发”-“添加”<img src="http://ww4.sinaimg.cn/large/68566be7jw1ev35w831doj20wk0jdn2g.jpg" alt="此处输入图片的描述"><br>端口填写7070，“使用socks4或5动态转发”这里得打钩。</p>
+<p>接下来是proxifier设置：<br>1.新建一个配置文件<br>2.添加代理服务器-127.0.0.1:7070<br>3.设置默认规则为direct，然后把你想翻墙的程序网站添加到规则里面，这样访问无须翻墙的网站速度还是过得去的。</p>
+<p>最终效果：<br><img src="http://ww2.sinaimg.cn/large/68566be7jw1ev3637gf11j20ai0qe0vh.jpg" alt="此处输入图片的描述"></p>
+<p>最后说下openshift主要还是用来部署程序，做一些云应用什么的。而且之前openshift就因为被大规模地用来作为翻墙跳板而屏蔽过，再加上现在速度也不理想，所以大家平时用来查资料什么的就好了。就当做各种翻墙方案的一种后备手段吧。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-aria2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -743,62 +803,9 @@
 
 
   
-    <article id="post-the-first-step" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/06/30/the-first-step/" class="article-date">
-  	<time datetime="2015-06-30T14:34:43.000Z" itemprop="datePublished">2015-06-30</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/06/30/the-first-step/">the first step</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-	  <!-- Table of Contents -->
-
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="The-First-Step"><a href="#The-First-Step" class="headerlink" title="The First Step"></a>The First Step</h1><p><font color="red">hello world<font></font></font></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </div>

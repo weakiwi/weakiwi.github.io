@@ -3,14 +3,30 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives | weakiwi</title>
+  <title>weakiwi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="如何解决php跑大循环时候的内存耗尽问题标签（空格分隔）： 爬虫
+
+最近认识到了php在和xpath以及mysql配合的方便性后，迫不及待地想找东西来练手。于是乎就盯上了超级玩家，而后更是惊喜地发现，该站没有做爬虫限制（连UA限制都没做），url又是非常的规律，于是就迫不及待地动手啦。
+首先还是按惯例用chrome的xpath helper插件来对网页上的dom元素进行分析。
+可以很快就得到对应">
+<meta property="og:type" content="article">
 <meta property="og:title" content="weakiwi">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/08/12/howtosolve/index.html">
 <meta property="og:site_name" content="weakiwi">
+<meta property="og:description" content="如何解决php跑大循环时候的内存耗尽问题标签（空格分隔）： 爬虫
+
+最近认识到了php在和xpath以及mysql配合的方便性后，迫不及待地想找东西来练手。于是乎就盯上了超级玩家，而后更是惊喜地发现，该站没有做爬虫限制（连UA限制都没做），url又是非常的规律，于是就迫不及待地动手啦。
+首先还是按惯例用chrome的xpath helper插件来对网页上的dom元素进行分析。
+可以很快就得到对应">
+<meta property="og:updated_time" content="2016-08-12T09:00:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="weakiwi">
+<meta name="twitter:description" content="如何解决php跑大循环时候的内存耗尽问题标签（空格分隔）： 爬虫
+
+最近认识到了php在和xpath以及mysql配合的方便性后，迫不及待地想找东西来练手。于是乎就盯上了超级玩家，而后更是惊喜地发现，该站没有做爬虫限制（连UA限制都没做），url又是非常的规律，于是就迫不及待地动手啦。
+首先还是按惯例用chrome的xpath helper插件来对网页上的dom元素进行分析。
+可以很快就得到对应">
   
     <link rel="alternative" href="/atom.xml" title="weakiwi" type="application/atom+xml">
   
@@ -189,258 +205,98 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-howtosolve" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/08/12/howtosolve/" class="article-date">
+  	<time datetime="2016-08-12T09:03:40.700Z" itemprop="datePublished">2016-08-12</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+    <div class="article-entry" itemprop="articleBody">
       
+	  <!-- Table of Contents -->
+
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="如何解决php跑大循环时候的内存耗尽问题"><a href="#如何解决php跑大循环时候的内存耗尽问题" class="headerlink" title="如何解决php跑大循环时候的内存耗尽问题"></a>如何解决php跑大循环时候的内存耗尽问题</h1><p>标签（空格分隔）： 爬虫</p>
+<hr>
+<p>最近认识到了php在和xpath以及mysql配合的方便性后，迫不及待地想找东西来练手。于是乎就盯上了超级玩家，而后更是惊喜地发现，该站没有做爬虫限制（连UA限制都没做），url又是非常的规律，于是就迫不及待地动手啦。</p>
+<p>首先还是按惯例用chrome的xpath helper插件来对网页上的dom元素进行分析。</p>
+<p>可以很快就得到对应的xpath路径，然后构造sql语句。然而这些都不是今天的重点（因为并不难啊）。<br>今天的重点是解决php的内存耗尽问题。</p>
+<p>当用php跑一个大循环而且每次循环都会对数据库进行查询或者插入时，php就很容易内存耗尽。像最初的脚本，五十万的循环我仅仅是跑到三千多就停止了。至于问题是为何产生的，可以参考<a href="http://blog.csdn.net/beyondlpf/article/details/7794028" target="_blank" rel="external">PHP的内存限制 Allowed memory size of 134217728 bytes exhausted (tried to allocate 1099 bytes) in</a>以及<a href="http://developer.51cto.com/art/201510/493225.htm" target="_blank" rel="external">PHP大量数据循环时内存耗尽问题的解决方案</a>。</p>
+<p>也就是说只要你每次查询都用ubuffered还有在php脚本一开始就加上<code>ini_set(&quot;memory_limit&quot;,&quot;521M&quot;);</code>就好了。然而我的脚本最后还是内存耗尽了，在百度一番后才知道是我的变量使用习惯不好。于是乎我在每次循环结束都用unset函数把变量全部释放感觉，最终这个五十万的大循环终于完完整地跑完了。其实想要进一步优化还有几个办法，比方说把整个循环拆分成若干个部分，每个部分结束就<code>mysql_close()</code>一下。又或者不要用老化的mysql模块。用新的mysqli也可能对性能有所提升</p>
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
+    </div>
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/10/16/iptables_learning/" class="archive-article-date">
-  	<time datetime="2016-10-16T09:04:16.438Z" itemprop="datePublished">Oct 16</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/12/gmScripr/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/12/4300/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/09/10/termux/" class="archive-article-date">
-  	<time datetime="2016-09-10T01:34:49.728Z" itemprop="datePublished">Sep 10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/22/神箭手爬虫/" class="archive-article-date">
-  	<time datetime="2016-08-22T12:21:34.809Z" itemprop="datePublished">Aug 22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/12/new_spider_method/" class="archive-article-date">
-  	<time datetime="2016-08-12T09:03:41.103Z" itemprop="datePublished">Aug 12</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/12/ndsl_1/" class="archive-article-date">
-  	<time datetime="2016-08-12T09:03:40.967Z" itemprop="datePublished">Aug 12</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/12/gmScripr/" class="archive-article-date">
-  	<time datetime="2016-08-12T09:03:40.835Z" itemprop="datePublished">Aug 12</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/12/howtosolve/" class="archive-article-date">
-  	<time datetime="2016-08-12T09:03:40.700Z" itemprop="datePublished">Aug 12</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="howtosolve" data-title="" data-url="http://yoursite.com/2016/08/12/howtosolve/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/12/4300/" class="archive-article-date">
-  	<time datetime="2016-08-12T09:03:36.514Z" itemprop="datePublished">Aug 12</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/12/10/pyFifaolScrpit/" class="archive-article-date">
-  	<time datetime="2015-12-10T08:34:17.000Z" itemprop="datePublished">Dec 10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/10/pyFifaolScrpit/">pyFifaolScrpit</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/11/29/fifaolPyscript/" class="archive-article-date">
-  	<time datetime="2015-11-29T06:02:42.000Z" itemprop="datePublished">Nov 29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/11/29/fifaolPyscript/">fifaolPyscript</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 </div>
       <footer id="footer">
@@ -473,8 +329,8 @@
 		mathjax: true,
 		animate: undefined,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: undefined

@@ -191,11 +191,70 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-iptables_learning" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/16/iptables_learning/" class="article-date">
+  	<time datetime="2016-10-16T09:04:16.438Z" itemprop="datePublished">2016-10-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+	  <!-- Table of Contents -->
+
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="iptables学习笔记"><a href="#iptables学习笔记" class="headerlink" title="iptables学习笔记"></a>iptables学习笔记</h1><p>标签（空格分隔）： 笔记 —</p>
+<ol>
+<li>什么是iptables?iptables 是一个配置 Linux 内核 防火墙 的命令行工具，是 netfilter<br>项目的一部分。术语 iptables 也经常代指该内核级防火墙。</li>
+<li>iptables 可以检测、修改、转发、重定向和丢弃 IPv4 数据包。过滤 IPv4<br>数据包的代码已经内置于内核中，并且按照不同的目的被组织成 表<br>的集合。表 由一组预先定义的 链 组成，链 包含遍历顺序规则。</li>
+<li>显示当前规则–<code>iptables -nvL</code></li>
+<li><p>重置规则， ```</p>
+<h1 id="iptables-F-iptables-X-iptables-t-nat-F-iptables-t-nat-X-iptables-t-mangle-F-iptables-t-mangle-X-iptables-t-raw-F"><a href="#iptables-F-iptables-X-iptables-t-nat-F-iptables-t-nat-X-iptables-t-mangle-F-iptables-t-mangle-X-iptables-t-raw-F" class="headerlink" title="iptables -F iptables -X iptables -t nat -F iptables -t nat -X iptables -t mangle -F iptables -t mangle -X iptables -t raw -F"></a>iptables -F iptables -X iptables -t nat -F iptables -t nat -X iptables -t mangle -F iptables -t mangle -X iptables -t raw -F</h1><h1 id="iptables-t-raw-X-iptables-t-security-F-iptables-t-security-X-iptables-P-INPUT-ACCEPT-iptables-P-FORWARD-ACCEPT"><a href="#iptables-t-raw-X-iptables-t-security-F-iptables-t-security-X-iptables-P-INPUT-ACCEPT-iptables-P-FORWARD-ACCEPT" class="headerlink" title="iptables -t raw -X iptables -t security -F iptables -t security -X iptables -P INPUT ACCEPT iptables -P FORWARD ACCEPT"></a>iptables -t raw -X iptables -t security -F iptables -t security -X iptables -P INPUT ACCEPT iptables -P FORWARD ACCEPT</h1><h1 id="iptables-P-OUTPUT-ACCEPT"><a href="#iptables-P-OUTPUT-ACCEPT" class="headerlink" title="iptables -P OUTPUT ACCEPT"></a>iptables -P OUTPUT ACCEPT</h1><p>``` -F刷新表，-x删除表</p>
+</li>
+<li><p>阻止来自同一ip的链接，<code>iptables -A INPUT -s 10.10.10.10 -j DROP</code></p>
+</li>
+<li>阻止来自一组ip地址的链接， <code>iptables -A INPUT -s 10.10.10.0/24 -j DROP</code></li>
+<li>iptables后跟参数的解释。-p proto，后跟协议名称。-A<br>append，后跟链名称。-J jump。-m 匹配。-I<br>insert，注意-A是加到一条链的尾部，-I是强行插入到一条链的头部。</li>
+<li><code>iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</code>，接收任何已建立端口的包</li>
+<li>iptables使用规则。所有链名必须大写，INPUT/OUTPUT/FORWARD/PREROUTING/POSTROUTING。所有表名必须小写，filter/nat/mangle。所有动作必须大写，ACCEPT/DROP/SNAT/DNAT/MASQUERADE。所有匹配必须小写，-s/-d/-m<br><module_name>/-p。</module_name></li>
+<li>-s为除某某地址以外的所有地址，-s<br>192.168/16，就是除内往外的所有地址。</li>
+<li>几个表的详细解释，一般默认是filter表。<img src="http://images.cnitblog.com/blog/458290/201307/25110549-4341c36598bb486fa1df55274ed17675.png" alt=""></li>
+<li>参数的详细解释。<img src="http://images.cnitblog.com/blog/458290/201307/25110752-87fb891aa3054e6aa9ccf37e94907d9e.png" alt=""></li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-termux" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2016/09/10/termux/" class="article-date">
-  	<time datetime="2016-09-10T01:35:06.457Z" itemprop="datePublished">2016-09-10</time>
+  	<time datetime="2016-09-10T01:34:49.728Z" itemprop="datePublished">2016-09-10</time>
 </a>
     </div>
   
@@ -239,8 +298,8 @@
     <article id="post-神箭手爬虫" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/10/神箭手爬虫/" class="article-date">
-  	<time datetime="2016-09-10T01:35:06.453Z" itemprop="datePublished">2016-09-10</time>
+      <a href="/2016/08/22/神箭手爬虫/" class="article-date">
+  	<time datetime="2016-08-22T12:21:34.809Z" itemprop="datePublished">2016-08-22</time>
 </a>
     </div>
   
@@ -289,8 +348,8 @@
     <article id="post-new_spider_method" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/10/new_spider_method/" class="article-date">
-  	<time datetime="2016-09-10T01:35:06.428Z" itemprop="datePublished">2016-09-10</time>
+      <a href="/2016/08/12/new_spider_method/" class="article-date">
+  	<time datetime="2016-08-12T09:03:41.103Z" itemprop="datePublished">2016-08-12</time>
 </a>
     </div>
   
@@ -337,8 +396,8 @@
     <article id="post-ndsl_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/10/ndsl_1/" class="article-date">
-  	<time datetime="2016-09-10T01:35:06.425Z" itemprop="datePublished">2016-09-10</time>
+      <a href="/2016/08/12/ndsl_1/" class="article-date">
+  	<time datetime="2016-08-12T09:03:40.967Z" itemprop="datePublished">2016-08-12</time>
 </a>
     </div>
   
@@ -394,59 +453,11 @@
 
 
   
-    <article id="post-howtosolve" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/10/howtosolve/" class="article-date">
-  	<time datetime="2016-09-10T01:35:06.410Z" itemprop="datePublished">2016-09-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-	  <!-- Table of Contents -->
-
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="如何解决php跑大循环时候的内存耗尽问题"><a href="#如何解决php跑大循环时候的内存耗尽问题" class="headerlink" title="如何解决php跑大循环时候的内存耗尽问题"></a>如何解决php跑大循环时候的内存耗尽问题</h1><p>标签（空格分隔）： 爬虫</p>
-<hr>
-<p>最近认识到了php在和xpath以及mysql配合的方便性后，迫不及待地想找东西来练手。于是乎就盯上了超级玩家，而后更是惊喜地发现，该站没有做爬虫限制（连UA限制都没做），url又是非常的规律，于是就迫不及待地动手啦。</p>
-<p>首先还是按惯例用chrome的xpath helper插件来对网页上的dom元素进行分析。</p>
-<p>可以很快就得到对应的xpath路径，然后构造sql语句。然而这些都不是今天的重点（因为并不难啊）。<br>今天的重点是解决php的内存耗尽问题。</p>
-<p>当用php跑一个大循环而且每次循环都会对数据库进行查询或者插入时，php就很容易内存耗尽。像最初的脚本，五十万的循环我仅仅是跑到三千多就停止了。至于问题是为何产生的，可以参考<a href="http://blog.csdn.net/beyondlpf/article/details/7794028" target="_blank" rel="external">PHP的内存限制 Allowed memory size of 134217728 bytes exhausted (tried to allocate 1099 bytes) in</a>以及<a href="http://developer.51cto.com/art/201510/493225.htm" target="_blank" rel="external">PHP大量数据循环时内存耗尽问题的解决方案</a>。</p>
-<p>也就是说只要你每次查询都用ubuffered还有在php脚本一开始就加上<code>ini_set(&quot;memory_limit&quot;,&quot;521M&quot;);</code>就好了。然而我的脚本最后还是内存耗尽了，在百度一番后才知道是我的变量使用习惯不好。于是乎我在每次循环结束都用unset函数把变量全部释放感觉，最终这个五十万的大循环终于完完整地跑完了。其实想要进一步优化还有几个办法，比方说把整个循环拆分成若干个部分，每个部分结束就<code>mysql_close()</code>一下。又或者不要用老化的mysql模块。用新的mysqli也可能对性能有所提升</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
     <article id="post-gmScripr" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/10/gmScripr/" class="article-date">
-  	<time datetime="2016-09-10T01:35:06.405Z" itemprop="datePublished">2016-09-10</time>
+      <a href="/2016/08/12/gmScripr/" class="article-date">
+  	<time datetime="2016-08-12T09:03:40.835Z" itemprop="datePublished">2016-08-12</time>
 </a>
     </div>
   
@@ -532,11 +543,59 @@
 
 
   
+    <article id="post-howtosolve" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/12/howtosolve/" class="article-date">
+  	<time datetime="2016-08-12T09:03:40.700Z" itemprop="datePublished">2016-08-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+	  <!-- Table of Contents -->
+
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="如何解决php跑大循环时候的内存耗尽问题"><a href="#如何解决php跑大循环时候的内存耗尽问题" class="headerlink" title="如何解决php跑大循环时候的内存耗尽问题"></a>如何解决php跑大循环时候的内存耗尽问题</h1><p>标签（空格分隔）： 爬虫</p>
+<hr>
+<p>最近认识到了php在和xpath以及mysql配合的方便性后，迫不及待地想找东西来练手。于是乎就盯上了超级玩家，而后更是惊喜地发现，该站没有做爬虫限制（连UA限制都没做），url又是非常的规律，于是就迫不及待地动手啦。</p>
+<p>首先还是按惯例用chrome的xpath helper插件来对网页上的dom元素进行分析。</p>
+<p>可以很快就得到对应的xpath路径，然后构造sql语句。然而这些都不是今天的重点（因为并不难啊）。<br>今天的重点是解决php的内存耗尽问题。</p>
+<p>当用php跑一个大循环而且每次循环都会对数据库进行查询或者插入时，php就很容易内存耗尽。像最初的脚本，五十万的循环我仅仅是跑到三千多就停止了。至于问题是为何产生的，可以参考<a href="http://blog.csdn.net/beyondlpf/article/details/7794028" target="_blank" rel="external">PHP的内存限制 Allowed memory size of 134217728 bytes exhausted (tried to allocate 1099 bytes) in</a>以及<a href="http://developer.51cto.com/art/201510/493225.htm" target="_blank" rel="external">PHP大量数据循环时内存耗尽问题的解决方案</a>。</p>
+<p>也就是说只要你每次查询都用ubuffered还有在php脚本一开始就加上<code>ini_set(&quot;memory_limit&quot;,&quot;521M&quot;);</code>就好了。然而我的脚本最后还是内存耗尽了，在百度一番后才知道是我的变量使用习惯不好。于是乎我在每次循环结束都用unset函数把变量全部释放感觉，最终这个五十万的大循环终于完完整地跑完了。其实想要进一步优化还有几个办法，比方说把整个循环拆分成若干个部分，每个部分结束就<code>mysql_close()</code>一下。又或者不要用老化的mysql模块。用新的mysqli也可能对性能有所提升</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-4300" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/10/4300/" class="article-date">
-  	<time datetime="2016-09-10T01:35:06.351Z" itemprop="datePublished">2016-09-10</time>
+      <a href="/2016/08/12/4300/" class="article-date">
+  	<time datetime="2016-08-12T09:03:36.514Z" itemprop="datePublished">2016-08-12</time>
 </a>
     </div>
   
@@ -757,71 +816,9 @@
 
 
   
-    <article id="post-betterhexo" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/11/06/betterhexo/" class="article-date">
-  	<time datetime="2015-11-06T13:30:19.000Z" itemprop="datePublished">2015-11-06</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/06/betterhexo/">betterhexo</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-	  <!-- Table of Contents -->
-
-        <script src="/assets/js/APlayer.min.js"> </script><p>折腾categories: toc:true    因为最近找不到什么素材更新博客啦，所以就转头开始折腾博客本身吧。这次对于博客的折腾，主要分为一下方面：</p>
-<ol>
-<li>seo优化</li>
-<li>增加统计功能</li>
-<li>优化显示效果</li>
-<li>丰富页面内容</li>
-</ol>
-<p>##seo优化<br>这里主要是添加sitemap被百度等网站收录以及添加robots.txt。参考：<br><a href="http://www.arao.me/2015/hexo-next-theme-optimize-seo/" target="_blank" rel="external">动动手指，不限于NexT主题的Hexo优化（SEO篇）</a><br><a href="http://lurrpis.com/5.html" target="_blank" rel="external">Hexo的SEO，标签转为关键词，搜索优化</a><br><a href="http://wanghuanming.com/2014/12/blog-seo/" target="_blank" rel="external">个人博客SEO实践</a></p>
-<p>##增加统计功能<br>主要是用了不蒜子这个js统计脚本：<br><a href="http://ibruce.info/2015/04/04/busuanzi/" target="_blank" rel="external">不蒜子</a></p>
-<p>##优化显示效果<br>主要是增加字体大小</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
