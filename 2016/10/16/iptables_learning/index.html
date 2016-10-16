@@ -19,7 +19,7 @@ iptables 可以检测、修改、转发、重定向和丢弃 IPv4 数据包。�
 iptables 可以检测、修改、转发、重定向和丢弃 IPv4 数据包。过滤 IPv4数据包的代码已经内置于内核中，并且按照不同的目的被组织成 表的集合。表 由">
 <meta property="og:image" content="http://images.cnitblog.com/blog/458290/201307/25110549-4341c36598bb486fa1df55274ed17675.png">
 <meta property="og:image" content="http://images.cnitblog.com/blog/458290/201307/25110752-87fb891aa3054e6aa9ccf37e94907d9e.png">
-<meta property="og:updated_time" content="2016-10-16T09:07:01.913Z">
+<meta property="og:updated_time" content="2016-10-16T09:11:52.096Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="weakiwi">
 <meta name="twitter:description" content="iptables学习笔记标签（空格分隔）： 笔记 —
@@ -209,7 +209,7 @@ iptables 可以检测、修改、转发、重定向和丢弃 IPv4 数据包。�
   
     <div class="article-meta">
       <a href="/2016/10/16/iptables_learning/" class="article-date">
-  	<time datetime="2016-10-16T09:07:01.921Z" itemprop="datePublished">2016-10-16</time>
+  	<time datetime="2016-10-16T09:11:52.096Z" itemprop="datePublished">2016-10-16</time>
 </a>
     </div>
   
@@ -227,8 +227,8 @@ iptables 可以检测、修改、转发、重定向和丢弃 IPv4 数据包。�
 <li>什么是iptables?iptables 是一个配置 Linux 内核 防火墙 的命令行工具，是 netfilter<br>项目的一部分。术语 iptables 也经常代指该内核级防火墙。</li>
 <li>iptables 可以检测、修改、转发、重定向和丢弃 IPv4 数据包。过滤 IPv4<br>数据包的代码已经内置于内核中，并且按照不同的目的被组织成 表<br>的集合。表 由一组预先定义的 链 组成，链 包含遍历顺序规则。</li>
 <li>显示当前规则–<code>iptables -nvL</code></li>
-<li><p>重置规则��<br>� ```</p>
-<h1 id="iptables-F-iptables-X-iptables-t-nat-F-iptables-t-nat-X-iptables-t-mangle-F-iptables-t-mangle-X-iptables-t-raw-F"><a href="#iptables-F-iptables-X-iptables-t-nat-F-iptables-t-nat-X-iptables-t-mangle-F-iptables-t-mangle-X-iptables-t-raw-F" class="headerlink" title="iptables -F iptables -X iptables -t nat -F iptables -t nat -X iptables -t mangle -F iptables -t mangle -X iptables -t raw -F"></a>iptables -F iptables -X iptables -t nat -F iptables -t nat -X iptables -t mangle -F iptables -t mangle -X iptables -t raw -F</h1><h1 id="iptables-t-raw-X-iptables-t-security-F-iptables-t-security-X-iptables-P-INPUT-ACCEPT-iptables-P-FORWARD-ACCEPT"><a href="#iptables-t-raw-X-iptables-t-security-F-iptables-t-security-X-iptables-P-INPUT-ACCEPT-iptables-P-FORWARD-ACCEPT" class="headerlink" title="iptables -t raw -X iptables -t security -F iptables -t security -X iptables -P INPUT ACCEPT iptables -P FORWARD ACCEPT"></a>iptables -t raw -X iptables -t security -F iptables -t security -X iptables -P INPUT ACCEPT iptables -P FORWARD ACCEPT</h1><h1 id="iptables-P-OUTPUT-ACCEPT"><a href="#iptables-P-OUTPUT-ACCEPT" class="headerlink" title="iptables -P OUTPUT ACCEPT"></a>iptables -P OUTPUT ACCEPT</h1><p>```<br>-F刷新表，-x删除表</p>
+<li><p>重置规则， ```</p>
+<h1 id="iptables-F-iptables-X-iptables-t-nat-F-iptables-t-nat-X-iptables-t-mangle-F-iptables-t-mangle-X-iptables-t-raw-F"><a href="#iptables-F-iptables-X-iptables-t-nat-F-iptables-t-nat-X-iptables-t-mangle-F-iptables-t-mangle-X-iptables-t-raw-F" class="headerlink" title="iptables -F iptables -X iptables -t nat -F iptables -t nat -X iptables -t mangle -F iptables -t mangle -X iptables -t raw -F"></a>iptables -F iptables -X iptables -t nat -F iptables -t nat -X iptables -t mangle -F iptables -t mangle -X iptables -t raw -F</h1><h1 id="iptables-t-raw-X-iptables-t-security-F-iptables-t-security-X-iptables-P-INPUT-ACCEPT-iptables-P-FORWARD-ACCEPT"><a href="#iptables-t-raw-X-iptables-t-security-F-iptables-t-security-X-iptables-P-INPUT-ACCEPT-iptables-P-FORWARD-ACCEPT" class="headerlink" title="iptables -t raw -X iptables -t security -F iptables -t security -X iptables -P INPUT ACCEPT iptables -P FORWARD ACCEPT"></a>iptables -t raw -X iptables -t security -F iptables -t security -X iptables -P INPUT ACCEPT iptables -P FORWARD ACCEPT</h1><h1 id="iptables-P-OUTPUT-ACCEPT"><a href="#iptables-P-OUTPUT-ACCEPT" class="headerlink" title="iptables -P OUTPUT ACCEPT"></a>iptables -P OUTPUT ACCEPT</h1><p>``` -F刷新表，-x删除表</p>
 </li>
 <li><p>阻止来自同一ip的链接，<code>iptables -A INPUT -s 10.10.10.10 -j DROP</code></p>
 </li>
